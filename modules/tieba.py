@@ -10,6 +10,8 @@ import random
 import smtplib
 from email.mime.text import MIMEText
 
+#https://github.com/gwtak/TieBaSign
+
 # API_URL
 LIKIE_URL = "http://c.tieba.baidu.com/c/f/forum/like"
 TBS_URL = "http://tieba.baidu.com/dc/common/tbs"
@@ -44,6 +46,7 @@ SIGN = "sign"
 KW = "kw"
 
 s = requests.Session()
+msg = ''
 
 def get_tbs(bduss):
     print("获取tbs开始")
@@ -157,6 +160,7 @@ def encodeData(data):
 def client_sign(bduss, tbs, fid, kw):
     # 客户端签到
     print("开始签到贴吧：" + kw)
+    msg = msg + '-' + kw
     data = copy.copy(SIGN_DATA)
     data.update({BDUSS: bduss, FID: fid, KW: kw, TBS: tbs, TIMESTAMP: str(int(time.time()))})
     data = encodeData(data)
@@ -169,3 +173,6 @@ def init(bduss):
     for j in favorites:
         time.sleep(random.randint(1,5))
         client_sign(bduss, tbs, j["id"], j["name"])
+    return {
+        content: '贴吧签到：签到成功，' + msg
+    }

@@ -236,7 +236,6 @@ def main():
     environ['NO_PROXY'] = '*'  # 禁止代理
 
     args = get_args()
-
     init_logger(args.debug)  # 初始化日志系统
 
     # 获取配置
@@ -245,7 +244,6 @@ def main():
         if args.action
         else ConfigObj('config.ini', encoding='UTF8')
     )
-
     if not config:
         logging.error('获取配置失败.')
         raise ValueError('获取配置失败.')
@@ -254,10 +252,9 @@ def main():
     results = SignIn(config).run()
 
     # 合并推送
-    text = '\n\n'.join([i['text'] for i in results])
-    text_html = '\n\n'.join([i['text_html'] for i in results])
+    text = '\n\n'.join([i['content'] for i in results])
     logging.info('refresh tokens 更新成功.')
-    push(config, text, text_html, '签到日志')
+    push(config, text, '', '签到日志')
 
 if __name__ == '__main__':
     main()

@@ -6,9 +6,9 @@ class Pusher:
     def __init__(self,token: str,topic: str):
         self.token = token
         self.topic = topic
+
     """
     发送消息
-
     :param title: 通知标题
     :param content: 消息内容
     :return:
@@ -32,7 +32,6 @@ class Pusher:
 
 """
 签到消息推送
-
 :param config: 配置文件, ConfigObj 对象 | dict
 :param content: 推送内容
 :param content_html: 推送内容, HTML 格式
