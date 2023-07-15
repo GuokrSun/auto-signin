@@ -49,14 +49,14 @@ class SignIn:
                     'cache-control': 'max-age=0',
                     'Host': flb_url,
                     'Upgrade-Insecure-Requests': '1',
-                    'Cookie': config[fuliba_cookie],
+                    'Cookie': self.config[fuliba_cookie],
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 Edg/97.0.1072.62'}
 
             # 访问Pc主页
             login_url = 'https://' + flb_url + '/forum.php?mobile=no'
             user_info = s.get(login_url, headers=headers).text
             user_name = re.search(r'title="访问我的空间">(.*?)</a>', user_info)
-            username = config[fuliba_username]
+            username = self.config[fuliba_username]
             if user_name:
                 print("登录用户名为：" + user_name.group(1))
                 print("环境用户名为：" + username)
@@ -97,7 +97,7 @@ class SignIn:
             url2 = origin + "/api/user/status"
             payload = {'token': 'glados.network'}
             headers = {
-                'cookie': cookie,
+                'cookie': self.config[glados_cookie],
                 'referer': origin + '/console/checkin',
                 'origin': origin,
                 'user-agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
@@ -136,7 +136,7 @@ class SignIn:
             headers = {
                 'Referer': 'https://www.smzdm.com/',
                 'Host': 'zhiyou.smzdm.com',
-                'Cookie': config[zdm_cookie],
+                'Cookie': self.config[zdm_cookie],
                 'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36",
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
             }
@@ -167,13 +167,13 @@ class SignIn:
 
     def run(self) -> dict:
         time.sleep(3)
-        if config[tieba_token]:
-            self.results.append(tieba(config[tieba_token]))
-        elif config[fuliba_cookie]:
+        if self.config[tieba_token]:
+            self.results.append(tieba(self.config[tieba_token]))
+        elif self.config[fuliba_cookie]:
             self.results.append(self.fuliba())
-        elif config[glados_cookie]:
+        elif self.config[glados_cookie]:
             self.results.append(self.glados())
-        elif config[zdm_cookie]:
+        elif self.config[zdm_cookie]:
             self.results.append(self.zdm())
         return self.results
 
