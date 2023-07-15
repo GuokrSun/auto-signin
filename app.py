@@ -77,14 +77,14 @@ class SignIn:
             log_info = "{}当前{}".format(sing_day, current_money)
             print(log_info)
             return {
-                content: '福利吧签到：签到成功，' + username + '，' + log_info
+                'content': '福利吧签到：签到成功，' + username + '，' + log_info
             }
 
         except Exception as e:
             errMsg = "福利吧签到：签到失败，失败原因:"+str(e)
             print(errMsg)
             return {
-                content: errMsg
+                'content': errMsg
             }
 
     # glados机场
@@ -116,13 +116,13 @@ class SignIn:
                 print('cookie已失效')
                 sendContent = email + '，cookie已失效'
             return {
-                content: 'glados机场签到：签到成功，' + sendContent
+                'content': 'glados机场签到：签到成功，' + sendContent
             }
         except Exception as e:
             errMsg = "glados机场签到：签到失败，失败原因:"+str(e)
             print(errMsg)
             return {
-                content: errMsg
+                'content': errMsg
             }
 
     # 值得买
@@ -156,13 +156,13 @@ class SignIn:
                         data['nickname'], checkin['point'], checkin['add_point'], checkin['exp'], checkin['gold'], checkin['prestige'], checkin['rank'])
                     print(sendContent)
             return {
-                content: '值得买签到：签到成功，' + sendContent
+                'content': '值得买签到：签到成功，' + sendContent
             }
         except Exception as e:
             errMsg = "值得买签到：签到失败，失败原因:"+str(e)
             print(errMsg)
             return {
-                content: errMsg
+                'content': errMsg
             }
 
     def run(self) -> dict:

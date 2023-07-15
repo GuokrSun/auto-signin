@@ -174,5 +174,5 @@ def init(bduss):
         time.sleep(random.randint(1,5))
         client_sign(bduss, tbs, j["id"], j["name"])
     return {
-        content: '贴吧签到：签到成功，' + msg
+        'content': '贴吧签到：签到成功，' + msg
     }
