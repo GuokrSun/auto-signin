@@ -11,7 +11,7 @@ jobs:
     name: signin
     runs-on: ubuntu-latest
     steps:
-      - uses: GuokrSun/auto-signin@main
+      - uses: GuokrSun/auto-signin@master
         with:
           TIEBA_TOKEN: ${{ secrets.TIEBA_TOKEN }}
           FULIBA_COOKIE: ${{ secrets.FULIBA_COOKIE }}
