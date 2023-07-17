@@ -17,7 +17,6 @@ from modules import  pushplus, tieba
 class SignIn:
     def __init__(self, config: ConfigObj | dict):
         self.config = config
-        self.results = []
 
     # 隐藏 token
     def __hide_token(self, token) -> str:
@@ -163,16 +162,20 @@ class SignIn:
             }
 
     def run(self) -> dict:
+        results = []
         time.sleep(3)
         if self.config['tieba_bduss']:
-            self.results.append(tieba.init(self.config['tieba_bduss']))
-        elif self.config['fuliba_cookie']:
-            self.results.append(self.fuliba())
-        elif self.config['glados_cookie']:
-            self.results.append(self.glados())
-        elif self.config['zdm_cookie']:
-            self.results.append(self.zdm())
-        return self.results
+            results.append(tieba.init(self.config['tieba_bduss']))
+        time.sleep(3)
+        if self.config['fuliba_cookie']:
+            results.append(self.fuliba())
+        time.sleep(3)
+        if self.config['glados_cookie']:
+            results.append(self.glados())
+        time.sleep(3)
+        if self.config['zdm_cookie']:
+            results.append(self.zdm())
+        return results
 
 """
 从环境变量获取配置
