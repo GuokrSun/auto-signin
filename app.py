@@ -4,11 +4,12 @@ import logging
 import json
 import argparse
 import time
+import re
 
 from configobj import ConfigObj
 import requests
 
-from modules import  pushplus, tieba
+from modules import  pushplus, tieba, zdm
 
 """
 签到主体
@@ -122,59 +123,20 @@ class SignIn:
                 'content': errMsg
             }
 
-    # 值得买
-    def zdm(self) -> dict:
-        try:
-            # 状态地址
-            current_url = 'https://zhiyou.smzdm.com/user/info/jsonp_get_current'
-            # 签到地址
-            checkin_url = 'https://zhiyou.smzdm.com/user/checkin/jsonp_checkin'
-            headers = {
-                'Referer': 'https://www.smzdm.com/',
-                'Host': 'zhiyou.smzdm.com',
-                'Cookie': self.config['zdm_cookie'],
-                'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
-            }
-            data = {}
-            sendContent = ''
-            res = requests.get(current_url, headers=headers)
-            if res.status_code == 200:
-                data = json.loads(res.text)
-                print(data)
-                if data['checkin']['has_checkin']:
-                    sendContent = '%s ：%s 你目前积分：%s，经验值：%s，金币：%s，碎银子：%s，威望：%s，等级：%s，已经签到：%s天' % (
-                        data['sys_date'], data['nickname'], data['point'], data['exp'], data['gold'], data['silver'], data['prestige'], data['level'], data['checkin']['daily_checkin_num'])
-                    print(sendContent)
-                else:
-                    checkin = req(checkin_url)['data']
-                    sendContent = '%s 目前积分：%s，增加积分：%s，经验值：%s，金币：%s，威望：%s，等级：%s' % (
-                        data['nickname'], checkin['point'], checkin['add_point'], checkin['exp'], checkin['gold'], checkin['prestige'], checkin['rank'])
-                    print(sendContent)
-            return {
-                'content': '值得买签到：签到成功，' + sendContent
-            }
-        except Exception as e:
-            errMsg = "值得买签到：签到失败，失败原因:"+str(e)
-            print(errMsg)
-            return {
-                'content': errMsg
-            }
-
     def run(self) -> dict:
         results = []
-        time.sleep(3)
-        if self.config['tieba_bduss']:
-            results.append(tieba.init(self.config['tieba_bduss']))
-        time.sleep(3)
-        if self.config['fuliba_cookie']:
-            results.append(self.fuliba())
         time.sleep(3)
         if self.config['glados_cookie']:
             results.append(self.glados())
         time.sleep(3)
+        if self.config['fuliba_cookie']:
+            results.append(self.fuliba())
+        time.sleep(3)
         if self.config['zdm_cookie']:
-            results.append(self.zdm())
+            results.append(zdm.init(self.config['zdm_cookie']))
+        time.sleep(3)
+        if self.config['tieba_bduss']:
+            results.append(tieba.init(self.config['tieba_bduss']))
         return results
 
 """
