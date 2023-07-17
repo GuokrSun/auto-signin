@@ -165,7 +165,7 @@ class SignIn:
     def run(self) -> dict:
         time.sleep(3)
         if self.config['tieba_bduss']:
-            self.results.append(tieba(self.config['tieba_bduss']))
+            self.results.append(tieba.init(self.config['tieba_bduss']))
         elif self.config['fuliba_cookie']:
             self.results.append(self.fuliba())
         elif self.config['glados_cookie']:
