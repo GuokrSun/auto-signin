@@ -14,28 +14,28 @@
 
 1. 创建 `.github/workflows/signin.yml` 文件, 写入 Action 配置, 以下是参考配置
     ```yaml
-  name: signin
+    name: signin
 
-  on:
-    workflow_dispatch:
-    schedule:
-      # UTC 1点30分(北京时间 9点30分)
-      - cron: 30 1 * * *
+    on:
+      workflow_dispatch:
+      schedule:
+        # UTC 1点30分(北京时间 9点30分)
+        - cron: 30 1 * * *
 
-  jobs:
-    signin:
-      name: signin
-      runs-on: ubuntu-latest
-      steps:
-        - uses: GuokrSun/auto-signin@master
-          with:
-              ZDM_COOKIE: ${{ secrets.ZDM_COOKIE }}
-              TIEBA_BDUSS: ${{ secrets.TIEBA_BDUSS }}
-              GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
-              FULIBA_COOKIE: ${{ secrets.FULIBA_COOKIE }}
-              FULIBA_USERNAME: ${{ secrets.FULIBA_USERNAME }}
-              PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-              PUSHPLUS_TOPIC: ${{ secrets.PUSHPLUS_TOPIC }}
+    jobs:
+      signin:
+        name: signin
+        runs-on: ubuntu-latest
+        steps:
+          - uses: GuokrSun/auto-signin@master
+            with:
+                ZDM_COOKIE: ${{ secrets.ZDM_COOKIE }}
+                TIEBA_BDUSS: ${{ secrets.TIEBA_BDUSS }}
+                GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
+                FULIBA_COOKIE: ${{ secrets.FULIBA_COOKIE }}
+                FULIBA_USERNAME: ${{ secrets.FULIBA_USERNAME }}
+                PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+                PUSHPLUS_TOPIC: ${{ secrets.PUSHPLUS_TOPIC }}
     ```
 2. 按需修改 `corn` 定时运行时间, 推荐在中国时间 22:00 之后.
 
