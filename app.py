@@ -28,7 +28,6 @@ class SignIn:
 
     # 福利吧
     def fuliba(self) -> dict:
-        # https://gitee.com/L_lawliet0309/fuliba_SCF
         try:
             s = requests.session()
             temp_addr = "https://www.wnflb99.com/"
@@ -89,7 +88,6 @@ class SignIn:
 
     # glados机场
     def glados(self) -> dict:
-        # https://github.com/lukesyy/glados_automation
         try:
             sendContent = ''
             origin = "https://glados.rocks"
@@ -127,7 +125,6 @@ class SignIn:
 
     # 值得买
     def zdm(self) -> dict:
-        # https://github.com/myseil/smzdm_sgin/
         try:
             # 状态地址
             current_url = 'https://zhiyou.smzdm.com/user/info/jsonp_get_current'
@@ -167,8 +164,8 @@ class SignIn:
 
     def run(self) -> dict:
         time.sleep(3)
-        if self.config['tieba_token']:
-            self.results.append(self.tieba())
+        if self.config['tieba_bduss']:
+            self.results.append(self.tieba(self.config['tieba_bduss']))
         elif self.config['fuliba_cookie']:
             self.results.append(self.fuliba())
         elif self.config['glados_cookie']:
@@ -184,11 +181,11 @@ class SignIn:
 def get_config_from_env() -> Optional[dict]:
     try:
         return {
-            'tieba_token': environ['TIEBA_TOKEN'],
+            'zdm_cookie': environ['ZDM_COOKIE'],
+            'tieba_bduss': environ['TIEBA_BDUSS'],
+            'glados_cookie': environ['GLADOS_COOKIE'],
             'fuliba_cookie': environ['FULIBA_COOKIE'],
             'fuliba_username': environ['FULIBA_USERNAME'],
-            'glados_cookie': environ['GLADOS_COOKIE'],
-            'zdm_cookie': environ['ZDM_COOKIE'],
             'pushplus_token': environ['PUSHPLUS_TOKEN'],
             'pushplus_topic': environ['PUSHPLUS_TOPIC'],
         }
@@ -239,11 +236,7 @@ def main():
     init_logger(args.debug)  # 初始化日志系统
 
     # 获取配置
-    config = (
-        get_config_from_env()
-        if args.action
-        else ConfigObj('config.ini', encoding='UTF8')
-    )
+    config = get_config_from_env()
     if not config:
         logging.error('获取配置失败.')
         raise ValueError('获取配置失败.')

@@ -10,8 +10,6 @@ import random
 import smtplib
 from email.mime.text import MIMEText
 
-#https://github.com/gwtak/TieBaSign
-
 # API_URL
 LIKIE_URL = "http://c.tieba.baidu.com/c/f/forum/like"
 TBS_URL = "http://tieba.baidu.com/dc/common/tbs"

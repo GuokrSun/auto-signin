@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: GuokrSun/auto-signin@master
         with:
+          ZDM_COOKIE: ${{ secrets.ZDM_COOKIE }}
           TIEBA_TOKEN: ${{ secrets.TIEBA_TOKEN }}
+          GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
           FULIBA_COOKIE: ${{ secrets.FULIBA_COOKIE }}
           FULIBA_USERNAME: ${{ secrets.FULIBA_USERNAME }}
-          GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
-          ZDM_COOKIE: ${{ secrets.ZDM_COOKIE }}
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
           PUSHPLUS_TOPIC: ${{ secrets.PUSHPLUS_TOPIC }}
