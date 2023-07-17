@@ -9,7 +9,7 @@ import re
 from configobj import ConfigObj
 import requests
 
-from modules import  pushplus, tieba, zdm
+from modules import  pushplus, tieba
 
 """
 签到主体
@@ -42,15 +42,16 @@ class SignIn:
                 if seachTxt:
                     bbs_addr = re.findall(r'href="(.*?)".*?福利吧论坛.*?</a>', seachTxt.group())
                     flb_url = bbs_addr[0]
-            headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-                    'Accept - Encoding': 'gzip, deflate',
-                    'Accept-Language': 'zh-CN,zh;q=0.9',
-                    'cache-control': 'max-age=0',
-                    'Host': flb_url,
-                    'Upgrade-Insecure-Requests': '1',
-                    'Cookie': self.config['fuliba_cookie'],
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 Edg/97.0.1072.62'}
-
+            headers = {
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                'Accept - Encoding': 'gzip, deflate',
+                'Accept-Language': 'zh-CN,zh;q=0.9',
+                'cache-control': 'max-age=0',
+                'Host': flb_url,
+                'Upgrade-Insecure-Requests': '1',
+                'Cookie': self.config['fuliba_cookie'],
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 Edg/97.0.1072.62'
+            }
             # 访问Pc主页
             login_url = 'https://' + flb_url + '/forum.php?mobile=no'
             user_info = s.get(login_url, headers=headers).text
@@ -131,12 +132,9 @@ class SignIn:
         time.sleep(3)
         if self.config['fuliba_cookie']:
             results.append(self.fuliba())
-        time.sleep(3)
-        if self.config['zdm_cookie']:
-            results.append(zdm.init(self.config['zdm_cookie']))
-        time.sleep(3)
-        if self.config['tieba_bduss']:
-            results.append(tieba.init(self.config['tieba_bduss']))
+        # time.sleep(3)
+        # if self.config['tieba_bduss']:
+        #     results.append(tieba.init(self.config['tieba_bduss']))
         return results
 
 """
@@ -146,7 +144,6 @@ class SignIn:
 def get_config_from_env() -> Optional[dict]:
     try:
         return {
-            'zdm_cookie': environ['ZDM_COOKIE'],
             'tieba_bduss': environ['TIEBA_BDUSS'],
             'glados_cookie': environ['GLADOS_COOKIE'],
             'fuliba_cookie': environ['FULIBA_COOKIE'],

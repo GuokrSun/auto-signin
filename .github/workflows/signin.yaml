@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: GuokrSun/auto-signin@master
         with:
-          ZDM_COOKIE: ${{ secrets.ZDM_COOKIE }}
           TIEBA_BDUSS: ${{ secrets.TIEBA_BDUSS }}
           GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
           FULIBA_COOKIE: ${{ secrets.FULIBA_COOKIE }}

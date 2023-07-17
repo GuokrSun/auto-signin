@@ -29,7 +29,6 @@
         steps:
           - uses: GuokrSun/auto-signin@master
             with:
-                ZDM_COOKIE: ${{ secrets.ZDM_COOKIE }}
                 TIEBA_BDUSS: ${{ secrets.TIEBA_BDUSS }}
                 GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
                 FULIBA_COOKIE: ${{ secrets.FULIBA_COOKIE }}
@@ -44,7 +43,6 @@
 在仓库的 `Settings` -> `Secrets and Variables` -> `Actions` 中点击 `New repository secret` 按照推送需要添加 Secrets.
 添加时 `Name` 为下方全大写的配置 key, `Secret` 为对应的值, 均不需要引号.
 
-- `ZDM_COOKIE`     [推荐] 值得买 cookie
 - `TIEBA_BDUSS`    [推荐] 百度贴吧 cookie-BDUSS
 - `GLADOS_COOKIE`  [推荐] glados cookie
 - `FULIBA_COOKIE`  [推荐] 福利吧 cookie
@@ -71,7 +69,6 @@
 
 ## 鸣谢
 代码仓库
-- [值得买](https://github.com/myseil/smzdm_sgin/)
 - [百度贴吧](https://github.com/gwtak/TieBaSign)
 - [glados机场](https://github.com/lukesyy/glados_automation)
 - [福利吧](https://gitee.com/L_lawliet0309/fuliba_SCF)
