@@ -3,8 +3,8 @@ author: guokr
 description: 'signin automatically'
 
 inputs:
-  TIEBA_TOKEN:
-    description: 'TIEBA_TOKEN'
+  TIEBA_BDUSS:
+    description: 'TIEBA_BDUSS'
     required: false
     default: ''
 
@@ -64,11 +64,11 @@ runs:
         pip install -r requirements.txt
         python app.py -a
       env:
-        TIEBA_TOKEN: ${{ inputs.TIEBA_TOKEN }}
+        ZDM_COOKIE: ${{ inputs.ZDM_COOKIE }}
+        TIEBA_BDUSS: ${{ inputs.TIEBA_BDUSS }}
+        GLADOS_COOKIE: ${{ inputs.GLADOS_COOKIE }}
         FULIBA_COOKIE: ${{ inputs.FULIBA_COOKIE }}
         FULIBA_USERNAME: ${{ github.FULIBA_USERNAME }}
-        GLADOS_COOKIE: ${{ inputs.GLADOS_COOKIE }}
-        ZDM_COOKIE: ${{ inputs.ZDM_COOKIE }}
         PUSHPLUS_TOKEN: ${{ inputs.PUSHPLUS_TOKEN }}
         PUSHPLUS_TOPIC: ${{ inputs.PUSHPLUS_TOPIC }}
 

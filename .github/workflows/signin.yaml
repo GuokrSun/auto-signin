@@ -14,7 +14,7 @@ jobs:
       - uses: GuokrSun/auto-signin@master
         with:
           ZDM_COOKIE: ${{ secrets.ZDM_COOKIE }}
-          TIEBA_TOKEN: ${{ secrets.TIEBA_TOKEN }}
+          TIEBA_BDUSS: ${{ secrets.TIEBA_BDUSS }}
           GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
           FULIBA_COOKIE: ${{ secrets.FULIBA_COOKIE }}
           FULIBA_USERNAME: ${{ secrets.FULIBA_USERNAME }}
