@@ -70,6 +70,7 @@
 可以在运行的 Action 运行记录中的 `Run GuokrSun/auto-signin@master` 末尾查看运行结果
 
 ## 鸣谢
+代码仓库
 - [值得买](https://github.com/myseil/smzdm_sgin/)
 - [百度贴吧](https://github.com/gwtak/TieBaSign)
 - [glados机场](https://github.com/lukesyy/glados_automation)
