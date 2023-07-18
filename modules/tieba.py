@@ -166,7 +166,8 @@ def client_sign(bduss, tbs, fid, kw):
     res = s.post(url=SIGN_URL, data=data, timeout=5).json()
     return res
 
-def init(bduss):
+def init(config):
+    bduss = config['tieba_bduss']
     tbs = get_tbs(bduss)
     favorites = get_favorite(bduss)
     for j in favorites:
