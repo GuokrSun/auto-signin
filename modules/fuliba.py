@@ -31,6 +31,9 @@ def init(config) -> dict:
         login_url = 'https://' + flb_url + '/forum.php?mobile=no'
         user_info = s.get(login_url, headers=headers).text
         user_name = re.search(r'title="访问我的空间">(.*?)</a>', user_info)
+        print(config)
+        print(user_info)
+        print(user_name)
         username = config['fuliba_username']
         if user_name:
             print("登录用户名为：" + user_name.group(1))
