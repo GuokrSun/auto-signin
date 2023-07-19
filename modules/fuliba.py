@@ -31,9 +31,6 @@ def init(config) -> dict:
         login_url = 'https://' + flb_url + '/forum.php?mobile=no'
         user_info = s.get(login_url, headers=headers).text
         user_name = re.search(r'title="访问我的空间">(.*?)</a>', user_info)
-        print(config)
-        print(user_info)
-        print(user_name)
         username = config['fuliba_username']
         if user_name:
             print("登录用户名为：" + user_name.group(1))
@@ -52,9 +49,7 @@ def init(config) -> dict:
 
         # 获取积分
         current_money = re.search(r'<a.*? id="extcreditmenu".*?>(.*?)</a>', user_info).group(1)
-        print('current_money', current_money)
         sing_day = re.search(r'<div class="tip_c">(.*?)</div>', user_info).group(1)
-        print('sing_day', sing_day)
         log_info = "{}当前{}".format(sing_day, current_money)
         print(log_info)
         return {
