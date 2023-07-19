@@ -34,9 +34,9 @@ class SignIn:
         time.sleep(3)
         if self.config['fuliba_cookie']:
             results.append(fuliba.init(self.config))
-        # time.sleep(3)
-        # if self.config['tieba_bduss']:
-        #     results.append(tieba.init(self.config))
+        time.sleep(3)
+        if self.config['tieba_bduss']:
+            results.append(tieba.init(self.config))
         return results
 
 """

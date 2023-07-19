@@ -45,7 +45,7 @@ def init(config) -> dict:
         qiandao_url = qiandao_url[47:-2]
         print('qiandao_url', qiandao_url)
         # 签到
-        s.get('https://' + flb_url + '/' + qiandao_url, headers=headers).text
+        user_info = s.get('https://' + flb_url + '/' + qiandao_url, headers=headers).text
 
         # 获取积分
         current_money = re.search(r'<a.*? id="extcreditmenu".*?>(.*?)</a>', user_info).group(1)
