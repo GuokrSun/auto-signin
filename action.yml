@@ -62,7 +62,7 @@ runs:
         TIEBA_BDUSS: ${{ inputs.TIEBA_BDUSS }}
         GLADOS_COOKIE: ${{ inputs.GLADOS_COOKIE }}
         FULIBA_COOKIE: ${{ inputs.FULIBA_COOKIE }}
-        FULIBA_USERNAME: ${{ github.FULIBA_USERNAME }}
+        FULIBA_USERNAME: ${{ inputs.FULIBA_USERNAME }}
         PUSHPLUS_TOKEN: ${{ inputs.PUSHPLUS_TOKEN }}
         PUSHPLUS_TOPIC: ${{ inputs.PUSHPLUS_TOPIC }}
 
