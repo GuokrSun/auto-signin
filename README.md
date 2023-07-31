@@ -70,5 +70,5 @@
 ## 鸣谢
 代码仓库
 - [百度贴吧](https://github.com/gwtak/TieBaSign)
-- [glados机场](https://github.com/lukesyy/glados_automation)
 - [福利吧](https://gitee.com/L_lawliet0309/fuliba_SCF)
+- [glados机场](https://github.com/lukesyy/glados_automation)

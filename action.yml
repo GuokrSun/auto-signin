@@ -3,6 +3,11 @@ author: guokr
 description: 'signin automatically'
 
 inputs:
+  GP_TOKEN:
+    description: 'Github personal access token'
+    required: false
+    default: ''
+
   TIEBA_BDUSS:
     description: 'TIEBA_BDUSS'
     required: false
@@ -43,7 +48,6 @@ runs:
       with:
         repository: GuokrSun/auto-signin
         excludes: prerelease, draft
-        token: ${{ inputs.GP_TOKEN }}
     - name: Download
       shell: bash
       run: |
@@ -59,6 +63,8 @@ runs:
         pip install -r requirements.txt
         python app.py -a
       env:
+        GP_TOKEN: ${{ inputs.GP_TOKEN }}
+        GITHUB_REPOS: ${{ github.repository }}
         TIEBA_BDUSS: ${{ inputs.TIEBA_BDUSS }}
         GLADOS_COOKIE: ${{ inputs.GLADOS_COOKIE }}
         FULIBA_COOKIE: ${{ inputs.FULIBA_COOKIE }}
