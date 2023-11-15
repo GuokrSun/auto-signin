@@ -44,7 +44,6 @@
 添加时 `Name` 为下方全大写的配置 key, `Secret` 为对应的值, 均不需要引号.
 
 - `TIEBA_BDUSS`    [推荐] 百度贴吧 cookie-BDUSS
-- `GLADOS_COOKIE`  [推荐] glados cookie
 - `FULIBA_COOKIE`  [推荐] 福利吧 cookie
 - `FULIBA_USERNAME`[推荐] 福利吧 username
 - `PUSHPLUS_TOKEN` [可选] *PushPlus Token*
