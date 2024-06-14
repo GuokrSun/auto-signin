@@ -18,14 +18,18 @@ def init(config) -> dict:
                 bbs_addr = re.findall(r'href="(.*?)".*?福利吧论坛.*?</a>', seachTxt.group())
                 flb_url = bbs_addr[0]
         headers = {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            'Accept - Encoding': 'gzip, deflate',
-            'Accept-Language': 'zh-CN,zh;q=0.9',
-            'cache-control': 'max-age=0',
-            'Host': flb_url,
-            'Upgrade-Insecure-Requests': '1',
-            'Cookie': config['fuliba_cookie'],
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 Edg/97.0.1072.62'
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-language": "zh-CN,zh;q=0.9",
+            "cache-control": "max-age=0",
+            "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Google Chrome\";v=\"122\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            'cookie': config['fuliba_cookie'],
         }
         # 访问Pc主页
         login_url = 'https://' + flb_url + '/forum.php?mobile=no'
