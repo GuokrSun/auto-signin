@@ -2,7 +2,7 @@
 
 ## 准备工作
 
-1. 创建一个新的公开仓库, 如 `aliyun-signin-action` 
+1. 创建一个新的公开仓库, 如 `aliyun-signin-action`  
    > 推荐使用公开仓库, 按照 GitHub [计费说明](https://github.com/settings/billing/plans), 公开仓库的 Actions 不计入使用时间
    > 不需要 Fork 本仓库, 采用 `uses` 的方式引用本仓库 Action, 实现自动更新*
 
